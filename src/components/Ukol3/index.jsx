@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Product } from "./Product";
 
 /*
@@ -17,16 +18,22 @@ import { Product } from "./Product";
 */
 
 export const Ukol3 = () => {
+  const [totalPrice, setTotalPrice] = useState(0)
+
+  const handleAddToCart = (price) => {
+    setTotalPrice(totalPrice + price)
+  }
+
   return (
     <>
       <p>
-        Cena: <strong>0 Kč</strong>
+        Cena: <strong>{totalPrice} Kč</strong>
       </p>
       <div className="products">
-        <Product image="/clothing/item01.jpg" name="Bunda" price={500} />
-        <Product image="/clothing/item02.jpg" name="Halenka" price={1200} />
-        <Product image="/clothing/item03.jpg" name="Svetr" price={1500} />
-        <Product image="/clothing/item04.jpg" name="Mikina" price={800} />
+        <Product image="/clothing/item01.jpg" name="Bunda" price={500} onAddToCart={handleAddToCart}/>
+        <Product image="/clothing/item02.jpg" name="Halenka" price={1200} onAddToCart={handleAddToCart}/>
+        <Product image="/clothing/item03.jpg" name="Svetr" price={1500} onAddToCart={handleAddToCart}/>
+        <Product image="/clothing/item04.jpg" name="Mikina" price={800} onAddToCart={handleAddToCart}/>
       </div>
     </>
   );
